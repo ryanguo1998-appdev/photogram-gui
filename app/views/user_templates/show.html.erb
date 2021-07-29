@@ -1,0 +1,36 @@
+<h1><%= @this_user %></h1>
+
+<dl>
+  <dt>ID</dt>
+  <dd><%= @user_id %></dd>
+  <dt>Edit user</dt>
+  <dd>
+    <form action="/update_user/<%=@user_id%>">
+    <label for="browser_username">Username</label>
+    <input id="browser_username" type="text" name="input_username" placeholder="Enter a username" value="diego">
+    <button>Update user</button>
+    </form>
+  </dd>
+</dl>
+
+<h1>Own photos (<%= @num_photos%>)</h1>
+<table border=1>
+  <tbody>
+    <tr>
+      <th>Image</th>
+      <th>Owner</th>
+      <th>Caption</th>
+      <th>Posted</th>
+      <th></th>
+  </tbody>
+
+  <% @matching_photos.each do |a_photo| %>
+    <tr>
+      <td><img src="<%= a_photo.image %>"></td>
+      <td><%= @this_user %></td>
+      <td><%= a_photo.caption %></td>
+      <td><%= a_photo.created_at %></td>
+      <td><a href="/photos/<%=a_photo.id%>">Show details</a></td>
+    </tr>
+  <% end %>
+</table>
