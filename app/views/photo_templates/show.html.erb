@@ -1,0 +1,41 @@
+<h1>Photo Details</h1>
+
+<dl>
+  <dt>Image</dt>
+  <dd><img src="<%= @this_photo.image %>"></dd>
+  <dt>Caption</dt>
+  <dd><%= @this_photo.caption %></dd>
+  <dt>Owner</dt>
+  <dd><%= @this_photo.poster.username %></dd>
+  <dt>Posted</dt>
+  <dd><%= @this_photo.created_at %></dd>  
+  <dt>Edit photo</dt>
+  <dd>
+    <form action="/update_user/<%=@user_id%>">
+    <label for="browser_username">Username</label>
+    <input id="browser_username" type="text" name="input_username" placeholder="Enter a username" value="diego">
+    <button>Update user</button>
+    </form>
+  </dd>
+  <dt>Delete photo</dt>
+  <dd><a href="/photos">Delete this photo</a></dd>  
+</dl>
+
+<h1>Comments (<%=@num_comments%>)</h1>
+
+<table>
+  <tbody>
+    <tr>
+      <th>Commenter</th>
+      <th>Comment</th>
+      <th>Posted</th>
+    </tr>
+    <% @matching_comments.each do |a_comment| %>
+    <tr>
+      <td><%=a_comment.commenter.username%></td>
+      <td><%=a_comment.body%></td>
+      <td><%=a_comment.created_at%></td>
+    </tr>
+    <%end%>
+  </tbody>
+</table>
